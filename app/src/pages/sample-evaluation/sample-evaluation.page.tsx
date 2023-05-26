@@ -159,7 +159,7 @@ function SampleEvaluationPage() {
       <Header />
       <StyledMain>
         <StyledSection>
-          <SectionTitle>Intensidade da percepção de defeitos</SectionTitle>
+          <SectionTitle>Intensidade da percepção de defeitos para a amostra N3Y</SectionTitle>
           <AttributesContainer>
             <Attribute
               attributeId={attributes.negatives.fusty.id}
