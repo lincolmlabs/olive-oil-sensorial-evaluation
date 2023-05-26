@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "sensorial-azeites",
+  "private_key_id": "fb765e9551bd1751bc57a02cf1e96c956e5e2136",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC+SIn8MY2/TTeN\n2QRy9QN0p3mHiTUEfwmg+kbKPh81bjeyCfk1WqMemD4rNPpe3TfhGZvzqAb9bAA5\n3a+BcQbj4yE5OShWl0CcpEFbGI5zTzESQu2JTpIeHy/LwNiPsDkjAfoGbqirwnvC\nfg/LuyqqD0jvDhcYbKRV+Sma+2w4cW4+1vyZx010k1C/oGBdBj0yy1fdCFu9UJlp\nKR/dlo+vXg7y5DjzBmnqRScHv1LqUOZo69A2qIEsilB0lqhx/F+pKpwLneaPe6QA\nYSEv4JOTB1m+7bzTIsAOq4E5h3oWjUNiHo87uQQaDhma7GY7HJDhS2eqsJwq2SZ9\ncWvvrlD7AgMBAAECggEACLXZWyoJixBF0sB0a667kcN41LN7MdF+51eNlgRx+Ugq\nVIQQXFjhzqy5a9DpBR6rSCqb8PNoHoGrIPr85bf+0L+87ZmoNw6FbqY2N61QGAcv\n/94AcaCfH7Hdxj31q94tP2T/xPubzQECGU0b+/99XHuGoyrJ89xFSYo2VVndAlha\nthldHbWqfQtRnL0Calw86C7Rah5A+QRfLS+iZFyL68/3lviwtgsNWMxzTNmwqQ8h\nJmQGwdJgg0feS8eD9Ut8OqosMoqRLn0FqqANRYOoDdhR8j63uSMv/ephaReG31IY\nK2wtmTfz9WRgo6zVQcSr4M7LBi0/ShLo1rYrgvRIQQKBgQDgIyHfwNZ9SpIYGzZu\nwfN9CqnIkmqg9TlisIDVbQbl3ZfjPz9OZyGRYi67m2rivKPzMep6EDVrEBB2XSXC\nTi+1RaBCOwEFvg9RLj9QzDLPxPsoTjyw39BmoyyInzB/pfGq2M1lQZ2UooebMTIn\nzWkRHRUO1Wdd1TMnjovqecPtpQKBgQDZVWLrF4I0SOlxTHerWEltLUZJlF9X226U\nHRxhTzN6r08YrXnvbuaaw1OChdhnwHeDeBl5JlpPp7Ub/7wDxEYM2cc0jHOZuwxl\nSG2ZTRJTCWhe9cFDQkM7+JsEmDY2nOYMzTZz7VhvAsK8h/sEhW4RY7p1FMA+ZHq9\nQkQ05/BCHwKBgHAMwDN22QOb0vtgJ08pgMtDGGvf3pSG42BV8qI/thIWPIdrp/9P\nCXX/ynMZmE6vlZrPmnPZRIs4ZbJ2kJjZs3oAy8QwcStov4mLADYpT0GVLSYSLr8R\ntMKK0omeY4V89Rq+9beoHNoggoBwEK3bP6pBirR2tQ0wtzkQRxw6MVvNAoGAZJjI\nW6cbBpaFL4NElRQdkKJ3OVGrPCB+s6Ix47zkSDJjOzn5CeHcbeBhhDXt8EA/UaRC\nrjgZb2tiQl6CKYAtKH+ZXHJyg8L3vt3ilSX+iF7/Z4z7cuV194lgP6Uw2uCO/3fx\nb4F6AJBXkSqj/vi/9N6jjNQZFAgwY/ALYC3HoOMCgYEA0KCJw4Qd/BwJL5pClJDJ\nLzSyq6BfIrMwnecgoJp17jyjJWd+dAS5i/mn2B9sIKf54wRqPiGcyqEzr/b9VW0/\n3Q/KeUSgAIeBmSrG2ySi8BVhRFbVw84QruL6FfxwB6U5FbkZP8Z4D+0TzeSGZcdv\nDr+HF0apzWMF4XiDxSd9yiM=\n-----END PRIVATE KEY-----\n",
+  "client_email": "sensorial-azeites@sensorial-azeites.iam.gserviceaccount.com",
+  "client_id": "113049892714168810188",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/sensorial-azeites%40sensorial-azeites.iam.gserviceaccount.com"
+}
