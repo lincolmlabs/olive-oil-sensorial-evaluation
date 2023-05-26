@@ -120,9 +120,10 @@ function Modal(props: {
         <PrimaryButton onClick={() => window.location.reload()}>
           Realizar nova análise
         </PrimaryButton>
-        <SecondaryButton
-          onClick={() => dismissModal(props.modalRef, props.shadowRef)}
-        >
+        <PrimaryButton onClick={() => window.alert(props.results)}>
+          Exportar para Excel
+        </PrimaryButton>
+        <SecondaryButton onClick={() => dismissModal(props.modalRef, props.shadowRef)}>
           Voltar
         </SecondaryButton>
       </section>
