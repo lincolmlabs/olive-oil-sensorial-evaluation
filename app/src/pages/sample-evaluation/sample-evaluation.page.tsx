@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { Header, Attribute, Descriptor, Modal } from "../../components";
+import { Header, Attribute, Samples, Descriptor, Modal } from "../../components";
 import {
   AttributesContainer,
   ButtonsSection,
@@ -159,15 +159,15 @@ function SampleEvaluationPage() {
       <Header />
       <StyledMain>
         <StyledSection>
-          <SectionTitle>Intensidade da percepção de defeitos</SectionTitle>
-          <SectionTitle>
-            <select id="simple" name="simple">
-              <option>L7K</option>
-              <option selected>Y5N</option>
-              <option>J3P</option>
-            </select>
-          </SectionTitle>
+          <SectionTitle>Intensidade da percepção de defeitos 2.1</SectionTitle> 
+          
           <AttributesContainer>
+            <Samples
+              value=""
+              label="Amostra"
+              scaleSize={scaleSize}
+              list={[]} 
+            />      
             <Attribute
               attributeId={attributes.negatives.fusty.id}
               label={attributes.negatives.fusty.description}
@@ -437,6 +437,9 @@ function SampleEvaluationPage() {
             }
           >
             Ver resultados
+          </PrimaryButton>
+          <PrimaryButton onClick={() => window.alert(results) }>
+            Exportar para o Excel
           </PrimaryButton>
           <SecondaryButton
             onClick={() => {

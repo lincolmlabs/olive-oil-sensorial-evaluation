@@ -2,12 +2,15 @@ import React, { SetStateAction, useRef } from "react";
 import { paintScale, zeroChangeHandler } from "./attribute.controller";
 import {
   StyledAttributeLabel,
+  StyledSampleLabel,
   StyledAttributeScale,
   StyledAttributeWrapper,
   StyledZeroCheckbox,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
+  StyledSampleScale,
+  StyledSampleWrapper
 } from "./attribute.style";
 
 function Attribute(props: {
@@ -59,4 +62,29 @@ function Attribute(props: {
   );
 }
 
-export { Attribute };
+function Samples(props: {
+  value: string;
+  label: string;
+  scaleSize: number;
+  list: string[];
+}) {
+  const scaleRef = useRef<HTMLSelectElement>(null);
+  const options = ["F5T", "A4D", "R2A", "G7A", "Y9A", "K1W"]
+
+  for(var x=0; x<options.length; x++) {
+    scaleRef.current?.add(new Option(options[x]))
+  }
+  return (
+    <StyledSampleWrapper>
+      <StyledSampleLabel>{props.label}</StyledSampleLabel>
+      <StyledSampleScale 
+        ref={scaleRef}
+        onChange={event => {
+          window.alert(event.currentTarget);
+        }}
+      />
+    </StyledSampleWrapper>
+  );
+}
+
+export { Attribute, Samples };

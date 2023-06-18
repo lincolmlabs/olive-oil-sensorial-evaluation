@@ -57,6 +57,14 @@ const StyledAttributeLabel = styled.pre`
   font-size: 1rem;
 `;
 
+const StyledSampleLabel = styled.pre`
+  width: 40%;
+  line-height: 1.4rem;
+  color: ${colorPalette.independence100};
+  font-weight: 500;
+  font-size: 1rem;
+`;
+
 const StyledAttributeScale = styled.input`
   align-self: flex-end;
 
@@ -103,12 +111,32 @@ const StyledAttributeWrapper = styled.div`
   margin-bottom: 56px;
 `;
 
+const StyledSampleWrapper = styled.div`
+  width: 100%;
+  height: 40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 56px;
+`;
+
+const StyledSampleScale = styled.select`
+  width: ${props => props.size + "pt"};
+  border: solid 1px black;
+  &::hover {
+    cursor: pointer;
+  }
+`;
+
 export {
   StyledAttributeLabel,
+  StyledSampleLabel,
   StyledAttributeScale,
   StyledAttributeWrapper,
   StyledZeroCheckbox,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
+  StyledSampleScale,
+  StyledSampleWrapper
 };
