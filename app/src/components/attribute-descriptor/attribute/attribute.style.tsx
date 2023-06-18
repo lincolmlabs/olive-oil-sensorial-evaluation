@@ -58,7 +58,7 @@ const StyledAttributeLabel = styled.pre`
 `;
 
 const StyledSampleLabel = styled.pre`
-  width: 40%;
+  width: 44%;
   line-height: 1.4rem;
   color: ${colorPalette.independence100};
   font-weight: 500;
