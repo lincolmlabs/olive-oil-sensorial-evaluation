@@ -2,7 +2,6 @@ import React, { SetStateAction, useRef } from "react";
 import { paintScale, zeroChangeHandler } from "./attribute.controller";
 import {
   StyledAttributeLabel,
-  StyledSampleLabel,
   StyledAttributeScale,
   StyledAttributeWrapper,
   StyledZeroCheckbox,
@@ -10,8 +9,27 @@ import {
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
   StyledSampleScale,
-  StyledSampleWrapper
 } from "./attribute.style";
+
+async function loadSamples(target: React.RefObject<HTMLSelectElement>) {
+  const url = "https://jsonplaceholder.typicode.com/users";
+  await fetch(url)
+    .then(response => {
+      return response.json();
+    })
+    .then(samples => {
+      var select = target.current;
+      if(select) {
+        while(select.options.length > 0) {
+          target.current?.options.remove(0);
+        }
+      }
+      for (var item in samples) {
+        target.current?.add(new Option(samples[item]["username"]));
+      }
+    })
+    .catch(error => console.error(error)); //If error occurs you will get here
+}
 
 function Attribute(props: {
   attributeId: string;
@@ -69,21 +87,17 @@ function Samples(props: {
   list: string[];
 }) {
   const scaleRef = useRef<HTMLSelectElement>(null);
-  const options = ["F5T", "A4D", "R2A", "G7A", "Y9A", "K1W"]
-
-  for(var x=0; x<options.length; x++) {
-    scaleRef.current?.add(new Option(options[x]))
-  }
+  loadSamples(scaleRef);
   return (
-    <StyledSampleWrapper>
-      <StyledSampleLabel>{props.label}</StyledSampleLabel>
+    <StyledAttributeWrapper>
+      <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
       <StyledSampleScale 
         ref={scaleRef}
         onChange={event => {
           window.alert(event.currentTarget);
         }}
       />
-    </StyledSampleWrapper>
+    </StyledAttributeWrapper>
   );
 }
 
