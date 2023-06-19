@@ -103,6 +103,14 @@ const StyledAttributeWrapper = styled.div`
   margin-bottom: 56px;
 `;
 
+const StyledSampleScale = styled.select`
+  width: ${props => props.size + "pt"};
+  border: solid 1px black;
+  &::hover {
+    cursor: pointer;
+  }
+`;
+
 export {
   StyledAttributeLabel,
   StyledAttributeScale,
@@ -111,4 +119,5 @@ export {
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
+  StyledSampleScale,
 };

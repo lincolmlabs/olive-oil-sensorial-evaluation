@@ -1,4 +1,15 @@
 export const attributes = {
+  samples: {
+    sample: {
+      id: "sample",
+      description: "Amostra em Validação",
+      descriptors:  {
+        s1: "K8D",
+        s2: "I0A",
+        s3: "U3J"
+      }
+    }
+  },
   positives: {
     fruity: {
       id: "fruity",
