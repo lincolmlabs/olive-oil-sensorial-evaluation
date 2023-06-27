@@ -105,7 +105,6 @@ const StyledAttributeWrapper = styled.div`
 
 const StyledSampleScale = styled.select`
   width: ${props => props.size + "pt"};
-  border: solid 1px black;
   &::hover {
     cursor: pointer;
   }

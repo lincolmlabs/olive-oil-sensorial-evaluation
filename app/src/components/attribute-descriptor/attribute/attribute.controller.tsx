@@ -1,6 +1,7 @@
 import { SetStateAction } from "react";
 import { DescriptorClass } from "../descriptor/descriptor.model";
 import { attributes } from "../models/attributes.model";
+import { IResult } from "../../modal/modal.model";
 
 const paintScale = (scale: HTMLInputElement | null, zero?: 0) => {
   if (scale) {
@@ -78,4 +79,36 @@ const zeroChangeHandler = (
   }
 };
 
-export { paintScale, zeroChangeHandler };
+const sendEvaluation = async (results: IResult, panelInfo: any) => {
+  const url = "http://rslanagro005627:8080/evaluation/PS-2023-01-12/01/user01";
+
+  var sampleNumber = 0;
+  var samples =  panelInfo["samples"];
+  for (var item in samples) {
+    if (samples[item]["Code"] == results.sample) {
+      sampleNumber = samples[item]["Number"];
+      break;
+    }
+  }
+
+  const jsonData = {
+    "batchName": panelInfo["batchName"],
+    "testAnalysis": panelInfo["testAnalysis"],
+    "testNumber": panelInfo["testNumber"],
+    "sampleNumber": sampleNumber,
+    "sampleCode": results.sample,
+    "user": "user01",
+    "responses": results,
+  }
+
+  const requestOptions = {
+    method: "POST",
+    headers: {'content-type': 'application/json'},
+    body: JSON.stringify(jsonData)
+  };
+  await fetch(url, requestOptions)
+    .then(response => response.json())
+    .catch(error => console.error(error)); //If error occurs you will get here
+}
+
+export { paintScale, zeroChangeHandler, sendEvaluation };

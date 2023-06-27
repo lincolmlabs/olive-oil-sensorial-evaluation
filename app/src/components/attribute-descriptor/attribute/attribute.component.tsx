@@ -11,26 +11,6 @@ import {
   StyledSampleScale,
 } from "./attribute.style";
 
-async function loadSamples(target: React.RefObject<HTMLSelectElement>) {
-  const url = "https://jsonplaceholder.typicode.com/users";
-  await fetch(url)
-    .then(response => {
-      return response.json();
-    })
-    .then(samples => {
-      var select = target.current;
-      if(select) {
-        while(select.options.length > 0) {
-          target.current?.options.remove(0);
-        }
-      }
-      for (var item in samples) {
-        target.current?.add(new Option(samples[item]["username"]));
-      }
-    })
-    .catch(error => console.error(error)); //If error occurs you will get here
-}
-
 function Attribute(props: {
   attributeId: string;
   label: string;
@@ -83,18 +63,29 @@ function Attribute(props: {
 function Samples(props: {
   value: string;
   label: string;
+  sampleState: string;
+  setSampleState: React.Dispatch<SetStateAction<string>>;
   scaleSize: number;
-  list: string[];
+  list: any[];
 }) {
   const scaleRef = useRef<HTMLSelectElement>(null);
-  loadSamples(scaleRef);
+  var samples = props.list;
+  if (scaleRef.current) {
+    while(scaleRef.current?.options.length > 0) {
+      scaleRef.current?.options.remove(0);
+    }
+    for (var item in samples) {
+      scaleRef.current?.options.add(new Option(samples[item]["Code"]));
+    }
+  }
   return (
     <StyledAttributeWrapper>
-      <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
+    <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
       <StyledSampleScale 
         ref={scaleRef}
+        value={props.sampleState}
         onChange={event => {
-          window.alert(event.currentTarget);
+          props.setSampleState(event.target.value);
         }}
       />
     </StyledAttributeWrapper>

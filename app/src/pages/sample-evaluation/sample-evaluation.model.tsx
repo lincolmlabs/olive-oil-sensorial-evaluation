@@ -4,6 +4,7 @@ export interface IEvaluationInfo {
 }
 
 export interface IResult {
+  sample: string;
   fusty: number;
   musty: number;
   winey: number;

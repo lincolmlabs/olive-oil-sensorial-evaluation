@@ -21,11 +21,20 @@ import { attributes } from "../../components/attribute-descriptor/models/attribu
 import {
   calibrationHandler,
   seeResultsHandler,
+  saveResultsHandler,
   showCalibrationModal,
 } from "./sample-evaluation.controller";
 import { IResult } from "./sample-evaluation.model";
+import { json } from "stream/consumers";
 
 function SampleEvaluationPage() {
+  const [sample, setSample] = useState("");
+  const [panelInfo, setPanelInfo] = useState({
+    "batchName": "",
+    "testAnalysis": "",
+    "testNumber": "",
+    "samples": [],
+  });
   const [fusty, setFusty] = useState(-1.0);
   const [musty, setMusty] = useState(-1.0);
   const [winey, setWiney] = useState(-1.0);
@@ -57,6 +66,7 @@ function SampleEvaluationPage() {
   const calibrationModal = useRef<HTMLDivElement>(null);
 
   const results: IResult = {
+    sample,
     fusty,
     musty,
     winey,
@@ -94,6 +104,24 @@ function SampleEvaluationPage() {
           calibrationModal,
           scaleCalibrationInputRef
         );
+  }, []);
+
+  useEffect(() => {
+    const url = "http://rslanagro005627:8080/evaluation/PS-2023-01-12/01";
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(jsonData => {
+        setPanelInfo({
+          "batchName": jsonData["BatchName"],
+          "testAnalysis": jsonData["TestAnalysis"],
+          "testNumber": jsonData["TestNumber"],
+          "samples": jsonData["Samples"],
+          //"user": "user01"
+        });
+      })
+      .catch(error => console.error(error));
   }, []);
 
   return (
@@ -143,6 +171,7 @@ function SampleEvaluationPage() {
         modalRef={modalResultsRef}
         shadowRef={shadowRef}
         results={{
+          sample,
           bitter,
           frostbitten,
           fruity,
@@ -158,289 +187,287 @@ function SampleEvaluationPage() {
       />
       <Header />
       <StyledMain>
-        <StyledSection>
-          <SectionTitle>Intensidade da percepção de defeitos 2.1</SectionTitle> 
-          
-          <AttributesContainer>
-            <Samples
-              value=""
-              label="Amostra"
-              scaleSize={scaleSize}
-              list={[]} 
-            />      
-            <Attribute
-              attributeId={attributes.negatives.fusty.id}
-              label={attributes.negatives.fusty.description}
-              scaleState={fusty}
-              setScaleState={setFusty}
-              scaleSize={scaleSize}
-            />
-            <Attribute
-              attributeId={attributes.negatives.musty.id}
-              label={attributes.negatives.musty.description}
-              scaleState={musty}
-              setScaleState={setMusty}
-              scaleSize={scaleSize}
-            />
-            <Attribute
-              attributeId={attributes.negatives.winey.id}
-              label={attributes.negatives.winey.description}
-              scaleState={winey}
-              setScaleState={setWiney}
-              scaleSize={scaleSize}
-            />
-            <Attribute
-              attributeId={attributes.negatives.frostbitten.id}
-              label={attributes.negatives.frostbitten.description}
-              scaleState={frostbitten}
-              setScaleState={setFrostbitten}
-              scaleSize={scaleSize}
-            />
-            <Attribute
-              attributeId={attributes.negatives.rancid.id}
-              label={attributes.negatives.rancid.description}
-              scaleState={rancid}
-              setScaleState={setRancid}
-              scaleSize={scaleSize}
-            />
-            <Attribute
-              attributeId={attributes.negatives.otherDefects.id}
-              label={attributes.negatives.otherDefects.description}
-              scaleState={otherDefects}
-              setScaleState={setOtherDefects}
-              scaleSize={scaleSize}
-              descriptorsDispatches={defectDescriptionsDispatches}
-              descriptorsSetDispatch={setDefectDescriptors}
-            />
-          </AttributesContainer>
-          <CheckboxesSection>
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.metalic.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.metalic
-                  .description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.metalic
-                  .description
-              }
-              descriptorState={metalic}
-              setDescriptorState={setMetalic}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.hay.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.hay.description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.hay.description
-              }
-              descriptorState={hay}
-              setDescriptorState={setHay}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.rough.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.rough.description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.rough.description
-              }
-              descriptorState={rough}
-              setDescriptorState={setRough}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.grubby.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.grubby.description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.grubby.description
-              }
-              descriptorState={grubby}
-              setDescriptorState={setGrubby}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.brine.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.brine.description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.brine.description
-              }
-              descriptorState={brine}
-              setDescriptorState={setBrine}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.burnt.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.burnt.description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.burnt.description
-              }
-              descriptorState={burnt}
-              setDescriptorState={setBurnt}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.vegetableWater.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.vegetableWater
-                  .description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.vegetableWater
-                  .description
-              }
-              descriptorState={vegetableWater}
-              setDescriptorState={setVegetableWater}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.esparto.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.esparto
-                  .description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.esparto
-                  .description
-              }
-              descriptorState={esparto}
-              setDescriptorState={setEsparto}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.cucumber.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.cucumber
-                  .description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.cucumber
-                  .description
-              }
-              descriptorState={cucumber}
-              setDescriptorState={setCucumber}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-            <Descriptor
-              descriptorId={
-                attributes.negatives.otherDefects.descriptors.greasy.id
-              }
-              descriptorDescription={
-                attributes.negatives.otherDefects.descriptors.greasy.description
-              }
-              label={
-                attributes.negatives.otherDefects.descriptors.greasy.description
-              }
-              descriptorState={greasy}
-              setDescriptorState={setGreasy}
-              descriptionsSetDispatch={setDefectDescriptors}
-              descriptionsSet={defectDescriptors}
-            />
-          </CheckboxesSection>
-        </StyledSection>
-        <StyledSection>
-          <SectionTitle>
-            Intensidade da percepção de atributos positivos
-          </SectionTitle>
-          <AttributesContainer>
-            <Attribute
-              attributeId={attributes.positives.fruity.id}
-              label={attributes.positives.fruity.description}
-              scaleState={fruity}
-              setScaleState={setFruity}
-              scaleSize={scaleSize}
-              descriptorsDispatches={fruityDescriptionsDispatches}
-              descriptorsSetDispatch={setFruityDescriptors}
-            />
+          <StyledSection>
+            <SectionTitle>Intensidade da percepção de defeitos da amostra {sample}
+              
+              </SectionTitle>     
+            <AttributesContainer>
+              <Samples
+                value=""
+                label="Amostra"
+                sampleState={sample}
+                setSampleState={setSample}
+                scaleSize={scaleSize}
+                list={panelInfo["samples"]} 
+              />      
+              <Attribute
+                attributeId={attributes.negatives.fusty.id}
+                label={attributes.negatives.fusty.description}
+                scaleState={fusty}
+                setScaleState={setFusty}
+                scaleSize={scaleSize}
+              />
+              <Attribute
+                attributeId={attributes.negatives.musty.id}
+                label={attributes.negatives.musty.description}
+                scaleState={musty}
+                setScaleState={setMusty}
+                scaleSize={scaleSize}
+              />
+              <Attribute
+                attributeId={attributes.negatives.winey.id}
+                label={attributes.negatives.winey.description}
+                scaleState={winey}
+                setScaleState={setWiney}
+                scaleSize={scaleSize}
+              />
+              <Attribute
+                attributeId={attributes.negatives.frostbitten.id}
+                label={attributes.negatives.frostbitten.description}
+                scaleState={frostbitten}
+                setScaleState={setFrostbitten}
+                scaleSize={scaleSize}
+              />
+              <Attribute
+                attributeId={attributes.negatives.rancid.id}
+                label={attributes.negatives.rancid.description}
+                scaleState={rancid}
+                setScaleState={setRancid}
+                scaleSize={scaleSize}
+              />
+              <Attribute
+                attributeId={attributes.negatives.otherDefects.id}
+                label={attributes.negatives.otherDefects.description}
+                scaleState={otherDefects}
+                setScaleState={setOtherDefects}
+                scaleSize={scaleSize}
+                descriptorsDispatches={defectDescriptionsDispatches}
+                descriptorsSetDispatch={setDefectDescriptors}
+              />
+            </AttributesContainer>
             <CheckboxesSection>
               <Descriptor
-                descriptorId={attributes.positives.fruity.descriptors.green.id}
-                label={
-                  attributes.positives.fruity.descriptors.green.description
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.metalic.id
                 }
                 descriptorDescription={
-                  attributes.positives.fruity.descriptors.green.description
+                  attributes.negatives.otherDefects.descriptors.metalic
+                    .description
                 }
-                descriptorState={green}
-                setDescriptorState={setGreen}
-                descriptionsSetDispatch={setFruityDescriptors}
-                descriptionsSet={fruityDescriptors}
+                label={
+                  attributes.negatives.otherDefects.descriptors.metalic
+                    .description
+                }
+                descriptorState={metalic}
+                setDescriptorState={setMetalic}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
               />
               <Descriptor
-                descriptorId={attributes.positives.fruity.descriptors.ripe.id}
-                label={attributes.positives.fruity.descriptors.ripe.description}
-                descriptorDescription={
-                  attributes.positives.fruity.descriptors.ripe.description
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.hay.id
                 }
-                descriptorState={ripe}
-                setDescriptorState={setRipe}
-                descriptionsSetDispatch={setFruityDescriptors}
-                descriptionsSet={fruityDescriptors}
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.hay.description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.hay.description
+                }
+                descriptorState={hay}
+                setDescriptorState={setHay}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.rough.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.rough.description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.rough.description
+                }
+                descriptorState={rough}
+                setDescriptorState={setRough}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.grubby.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.grubby.description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.grubby.description
+                }
+                descriptorState={grubby}
+                setDescriptorState={setGrubby}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.brine.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.brine.description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.brine.description
+                }
+                descriptorState={brine}
+                setDescriptorState={setBrine}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.burnt.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.burnt.description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.burnt.description
+                }
+                descriptorState={burnt}
+                setDescriptorState={setBurnt}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.vegetableWater.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.vegetableWater
+                    .description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.vegetableWater
+                    .description
+                }
+                descriptorState={vegetableWater}
+                setDescriptorState={setVegetableWater}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.esparto.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.esparto
+                    .description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.esparto
+                    .description
+                }
+                descriptorState={esparto}
+                setDescriptorState={setEsparto}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.cucumber.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.cucumber
+                    .description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.cucumber
+                    .description
+                }
+                descriptorState={cucumber}
+                setDescriptorState={setCucumber}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
+              />
+              <Descriptor
+                descriptorId={
+                  attributes.negatives.otherDefects.descriptors.greasy.id
+                }
+                descriptorDescription={
+                  attributes.negatives.otherDefects.descriptors.greasy.description
+                }
+                label={
+                  attributes.negatives.otherDefects.descriptors.greasy.description
+                }
+                descriptorState={greasy}
+                setDescriptorState={setGreasy}
+                descriptionsSetDispatch={setDefectDescriptors}
+                descriptionsSet={defectDescriptors}
               />
             </CheckboxesSection>
-            <Attribute
-              attributeId={attributes.positives.bitter.id}
-              label={attributes.positives.bitter.description}
-              scaleState={bitter}
-              setScaleState={setBitter}
-              scaleSize={scaleSize}
-            />
-            <Attribute
-              attributeId={attributes.positives.pungent.id}
-              label={attributes.positives.pungent.description}
-              scaleState={pungent}
-              setScaleState={setPungent}
-              scaleSize={scaleSize}
-            />
-          </AttributesContainer>
-        </StyledSection>
+          </StyledSection>
+          <StyledSection>
+            <SectionTitle>
+              Intensidade da percepção de atributos positivos
+            </SectionTitle>
+            <AttributesContainer>
+              <Attribute
+                attributeId={attributes.positives.fruity.id}
+                label={attributes.positives.fruity.description}
+                scaleState={fruity}
+                setScaleState={setFruity}
+                scaleSize={scaleSize}
+                descriptorsDispatches={fruityDescriptionsDispatches}
+                descriptorsSetDispatch={setFruityDescriptors}
+              />
+              <CheckboxesSection>
+                <Descriptor
+                  descriptorId={attributes.positives.fruity.descriptors.green.id}
+                  label={
+                    attributes.positives.fruity.descriptors.green.description
+                  }
+                  descriptorDescription={
+                    attributes.positives.fruity.descriptors.green.description
+                  }
+                  descriptorState={green}
+                  setDescriptorState={setGreen}
+                  descriptionsSetDispatch={setFruityDescriptors}
+                  descriptionsSet={fruityDescriptors}
+                />
+                <Descriptor
+                  descriptorId={attributes.positives.fruity.descriptors.ripe.id}
+                  label={attributes.positives.fruity.descriptors.ripe.description}
+                  descriptorDescription={
+                    attributes.positives.fruity.descriptors.ripe.description
+                  }
+                  descriptorState={ripe}
+                  setDescriptorState={setRipe}
+                  descriptionsSetDispatch={setFruityDescriptors}
+                  descriptionsSet={fruityDescriptors}
+                />
+              </CheckboxesSection>
+              <Attribute
+                attributeId={attributes.positives.bitter.id}
+                label={attributes.positives.bitter.description}
+                scaleState={bitter}
+                setScaleState={setBitter}
+                scaleSize={scaleSize}
+              />
+              <Attribute
+                attributeId={attributes.positives.pungent.id}
+                label={attributes.positives.pungent.description}
+                scaleState={pungent}
+                setScaleState={setPungent}
+                scaleSize={scaleSize}
+              />
+            </AttributesContainer>
+          </StyledSection>
         <ButtonsSection>
           <PrimaryButton
             onClick={() =>
-              seeResultsHandler(shadowRef, modalResultsRef, results)
+              saveResultsHandler(results, panelInfo)
             }
-          >
-            Ver resultados
-          </PrimaryButton>
-          <PrimaryButton onClick={() => window.alert(results) }>
-            Exportar para o Excel
-          </PrimaryButton>
+          >Enviar</PrimaryButton>
           <SecondaryButton
             onClick={() => {
               window.location.reload();
