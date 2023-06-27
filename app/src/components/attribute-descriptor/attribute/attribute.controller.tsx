@@ -80,7 +80,7 @@ const zeroChangeHandler = (
 };
 
 const sendEvaluation = async (results: IResult, panelInfo: any) => {
-  const url = "http://rslanagro005627:8080/evaluation/PS-2023-01-12/01/user01";
+  const url = "https://lfda.lincolmlabs.cloud/evaluation/" + panelInfo["batchName"] + "/01/user01";
 
   var sampleNumber = 0;
   var samples =  panelInfo["samples"];
