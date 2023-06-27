@@ -1,5 +1,6 @@
 import React, { SetStateAction } from "react";
 import { IResult } from "./sample-evaluation.model";
+import { sendEvaluation } from "../../components/attribute-descriptor/attribute/attribute.controller";
 
 const isResultsValid = (results: IResult) => {
   let key: keyof IResult;
@@ -84,4 +85,10 @@ const seeResultsHandler = (
   }
 };
 
-export { seeResultsHandler, showCalibrationModal, calibrationHandler };
+const saveResultsHandler = (results: IResult, panelInfo: any) => {
+  if (isResultsValid(results)) {
+    sendEvaluation(results, panelInfo);
+  }
+}
+
+export { seeResultsHandler, showCalibrationModal, calibrationHandler, saveResultsHandler };

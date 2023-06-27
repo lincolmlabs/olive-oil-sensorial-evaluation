@@ -1,4 +1,5 @@
 app/node_modules/
 app/build/
+app/public/
 build.sh
 run.sh
