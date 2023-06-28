@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Header, Attribute, Samples, Descriptor, Modal } from "../../components";
 import {
   AttributesContainer,
@@ -20,12 +20,10 @@ import {
 import { attributes } from "../../components/attribute-descriptor/models/attributes.model";
 import {
   calibrationHandler,
-  seeResultsHandler,
   saveResultsHandler,
   showCalibrationModal,
 } from "./sample-evaluation.controller";
 import { IResult } from "./sample-evaluation.model";
-import { json } from "stream/consumers";
 
 function SampleEvaluationPage() {
   const [sample, setSample] = useState("");
@@ -107,7 +105,7 @@ function SampleEvaluationPage() {
   }, []);
 
   useEffect(() => {
-    const url = "http://rslanagro005627:8080/evaluation/PS-2023-01-12/01";
+    const url = "https://lfda.lincolmlabs.cloud/evaluation/PS-2023-01-12/01";
     fetch(url)
       .then(response => {
         return response.json();
