@@ -80,7 +80,7 @@ const zeroChangeHandler = (
 };
 
 const sendEvaluation = async (results: IResult, panelInfo: any) => {
-  const url = "https://lfda.lincolmlabs.cloud/evaluation/" + panelInfo["batchName"] + "/user01";
+  const url = "https://lfdars.lincolmlabs.cloud/evaluation/" + panelInfo["batchName"] + "/user01";
 
   var sampleNumber = 0;
   var samples =  panelInfo["samples"];

@@ -106,7 +106,7 @@ function SampleEvaluationPage() {
 
   useEffect(() => {
     const query = new URLSearchParams(window.location.search);
-    const url = "https://lfda.lincolmlabs.cloud/evaluation/" + query.get("ps");
+    const url = "https://lfdars.lincolmlabs.cloud/evaluation/" + query.get("ps");
     fetch(url)
       .then(response => {
         return response.json();
