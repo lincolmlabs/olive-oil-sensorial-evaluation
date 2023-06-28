@@ -101,6 +101,8 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "responses": results,
   }
 
+  console.log(jsonData);
+
   const requestOptions = {
     method: "POST",
     headers: {'content-type': 'application/json'},

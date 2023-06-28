@@ -119,6 +119,7 @@ function SampleEvaluationPage() {
           "samples": jsonData["Samples"],
           //"user": "user01"
         });
+        setSample(jsonData["Samples"][0]["Code"]);
       })
       .catch(error => console.error(error));
   }, []);
