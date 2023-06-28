@@ -105,7 +105,8 @@ function SampleEvaluationPage() {
   }, []);
 
   useEffect(() => {
-    const url = "https://lfda.lincolmlabs.cloud/evaluation/PS-2023-01-12/01";
+    const query = new URLSearchParams(window.location.search);
+    const url = "https://lfda.lincolmlabs.cloud/evaluation/" + query.get("ps");
     fetch(url)
       .then(response => {
         return response.json();
