@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Header, Attribute, Samples, Descriptor, Modal } from "../../components";
+import { Header, Attribute, TextAttribute, Samples, Descriptor } from "../../components";
 import {
   AttributesContainer,
   ButtonsSection,
@@ -27,6 +27,8 @@ import { IResult } from "./sample-evaluation.model";
 
 function SampleEvaluationPage() {
   const [sample, setSample] = useState("");
+  const [comments, setComments] = useState("");
+
   const [panelInfo, setPanelInfo] = useState({
     "batchName": "",
     "testAnalysis": "",
@@ -59,12 +61,12 @@ function SampleEvaluationPage() {
   const [scaleSize, setScaleSize] = useState(393);
 
   const scaleCalibrationInputRef = useRef<HTMLInputElement>(null);
-  const modalResultsRef = useRef<HTMLDivElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
   const calibrationModal = useRef<HTMLDivElement>(null);
 
   const results: IResult = {
     sample,
+    comments,
     fusty,
     musty,
     winey,
@@ -167,30 +169,10 @@ function SampleEvaluationPage() {
         761px e altura mínima de 500px.
       </MobileScreen>
       <Shadow ref={shadowRef} />
-      <Modal
-        modalRef={modalResultsRef}
-        shadowRef={shadowRef}
-        results={{
-          sample,
-          bitter,
-          frostbitten,
-          fruity,
-          fusty,
-          musty,
-          otherDefects,
-          pungent,
-          rancid,
-          winey,
-          defectDescriptors,
-          fruityDescriptors,
-        }}
-      />
       <Header />
       <StyledMain>
           <StyledSection>
-            <SectionTitle>Intensidade da percepção de defeitos da amostra {sample}
-              
-              </SectionTitle>     
+            <SectionTitle>Intensidade da percepção de defeitos da amostra {sample}</SectionTitle>     
             <AttributesContainer>
               <Samples
                 value=""
@@ -460,6 +442,14 @@ function SampleEvaluationPage() {
                 setScaleState={setPungent}
                 scaleSize={scaleSize}
               />
+            </AttributesContainer>
+            <AttributesContainer>
+              <TextAttribute
+                attributeId={attributes.textual.comments.id}
+                label={attributes.textual.comments.description}
+                textState={comments}
+                setTextState={setComments}
+               />
             </AttributesContainer>
           </StyledSection>
         <ButtonsSection>

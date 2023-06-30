@@ -1,6 +1,4 @@
 import { Header } from "./header/header.component";
-import { Attribute, Samples } from "./attribute-descriptor/attribute";
+import { Attribute, Samples, TextAttribute } from "./attribute-descriptor/attribute";
 import { Descriptor } from "./attribute-descriptor/descriptor";
-import { Modal } from "./modal";
-
-export { Header, Attribute, Descriptor, Modal, Samples };
+export { Header, Attribute, Descriptor, Samples, TextAttribute };

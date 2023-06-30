@@ -9,6 +9,7 @@ import {
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
   StyledSampleScale,
+  StyledTextArea,
 } from "./attribute.style";
 
 function Attribute(props: {
@@ -92,4 +93,24 @@ function Samples(props: {
   );
 }
 
-export { Attribute, Samples };
+function TextAttribute(props: {
+  attributeId: string;
+  label: string;
+  textState: string;
+  setTextState: React.Dispatch<SetStateAction<string>>;
+  descriptorsDispatches?: Array<React.Dispatch<SetStateAction<boolean>>>;
+  descriptorsSetDispatch?: React.Dispatch<SetStateAction<Set<string>>>;
+}) {
+  const scaleRef = useRef<HTMLInputElement>(null);
+
+  return (
+    <StyledAttributeWrapper>
+      <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
+      <StyledZeroScaleWrapper>
+        <StyledTextArea />
+      </StyledZeroScaleWrapper>
+    </StyledAttributeWrapper>
+  );
+}
+
+export { Attribute, Samples, TextAttribute };

@@ -1,5 +1,6 @@
 export interface IResult {
   sample: string;
+  comments: string;
   fusty: number;
   musty: number;
   winey: number;

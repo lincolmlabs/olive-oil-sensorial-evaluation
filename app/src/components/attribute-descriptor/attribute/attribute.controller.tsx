@@ -98,10 +98,11 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "sampleNumber": sampleNumber,
     "sampleCode": results.sample,
     "user": "user01",
+    "comments": panelInfo["comments"],
     "responses": results,
   }
 
-  console.log(jsonData);
+  console.log(jsonData)
 
   const requestOptions = {
     method: "POST",

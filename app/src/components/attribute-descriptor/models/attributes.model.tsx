@@ -58,4 +58,10 @@ export const attributes = {
       },
     },
   },
+  textual: {
+    comments: {
+      id: "comments",
+      description: "Comentários"
+    }
+  }
 };
