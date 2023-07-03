@@ -62,6 +62,10 @@ export const attributes = {
     comments: {
       id: "comments",
       description: "Comentários"
+    },
+    otherPerceptions: {
+      id: "otherPerceptions",
+      description: "Outras percepções"
     }
   }
 };

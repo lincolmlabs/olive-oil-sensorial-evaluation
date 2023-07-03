@@ -6,6 +6,7 @@ export interface IEvaluationInfo {
 export interface IResult {
   sample: string;
   comments: string;
+  otherPerceptions: string;
   fusty: number;
   musty: number;
   winey: number;

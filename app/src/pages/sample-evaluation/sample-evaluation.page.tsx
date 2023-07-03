@@ -28,6 +28,7 @@ import { IResult } from "./sample-evaluation.model";
 function SampleEvaluationPage() {
   const [sample, setSample] = useState("");
   const [comments, setComments] = useState("");
+  const [otherPerceptions, setOtherPerceptions] = useState("");
 
   const [panelInfo, setPanelInfo] = useState({
     "batchName": "",
@@ -67,6 +68,7 @@ function SampleEvaluationPage() {
   const results: IResult = {
     sample,
     comments,
+    otherPerceptions,
     fusty,
     musty,
     winey,
@@ -447,15 +449,29 @@ function SampleEvaluationPage() {
               <TextAttribute
                 attributeId={attributes.textual.comments.id}
                 label={attributes.textual.comments.description}
+                placeholder="Informe aqui seus comentários sobre o painel." 
+                rows={3}
                 textState={comments}
                 setTextState={setComments}
+               />
+            </AttributesContainer>
+            <AttributesContainer>
+              <TextAttribute
+                attributeId={attributes.textual.otherPerceptions.id}
+                label={attributes.textual.otherPerceptions.description}
+                placeholder="Outras percepções ou atributos não descritos, qualidade geral do azeite; comentários sobre dificuldades (condição pessoal, ambiente, etc.)"  
+                rows={5}
+                textState={otherPerceptions}
+                setTextState={setOtherPerceptions}
                />
             </AttributesContainer>
           </StyledSection>
         <ButtonsSection>
           <PrimaryButton
-            onClick={() =>
-              saveResultsHandler(results, panelInfo)
+            onClick={() => {
+                console.log(comments);
+                saveResultsHandler(results, panelInfo);
+              }
             }
           >Enviar</PrimaryButton>
           <SecondaryButton

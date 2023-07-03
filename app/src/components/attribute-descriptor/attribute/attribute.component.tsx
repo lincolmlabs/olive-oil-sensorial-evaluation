@@ -96,18 +96,23 @@ function Samples(props: {
 function TextAttribute(props: {
   attributeId: string;
   label: string;
+  placeholder: string; 
+  rows: number;
   textState: string;
   setTextState: React.Dispatch<SetStateAction<string>>;
-  descriptorsDispatches?: Array<React.Dispatch<SetStateAction<boolean>>>;
-  descriptorsSetDispatch?: React.Dispatch<SetStateAction<Set<string>>>;
 }) {
-  const scaleRef = useRef<HTMLInputElement>(null);
+  const scaleRef = useRef<HTMLTextAreaElement>(null);
 
   return (
     <StyledAttributeWrapper>
       <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
       <StyledZeroScaleWrapper>
-        <StyledTextArea />
+        <StyledTextArea 
+          ref={scaleRef} 
+          placeholder={props.placeholder}
+          rows={props.rows} 
+          onChange={e => { props.setTextState(e.target.value) }} 
+        />
       </StyledZeroScaleWrapper>
     </StyledAttributeWrapper>
   );
