@@ -58,4 +58,14 @@ export const attributes = {
       },
     },
   },
+  textual: {
+    comments: {
+      id: "comments",
+      description: "Comentários"
+    },
+    otherPerceptions: {
+      id: "otherPerceptions",
+      description: "Outras percepções"
+    }
+  }
 };

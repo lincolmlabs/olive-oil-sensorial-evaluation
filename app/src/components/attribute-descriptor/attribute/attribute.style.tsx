@@ -24,6 +24,28 @@ const StyledZeroCheckbox = styled.input`
   }
 `;
 
+const StyledTextArea = styled.textarea`
+  appearance: none;
+  width: 440px;
+  border: 1px solid ${colorPalette.independence80};
+
+  &:checked {
+    appearance: none;
+    background: ${colorPalette.independence100};
+    border: 1px solid ${colorPalette.independence100};
+
+    &::after {
+      color: ${colorPalette.cultured100};
+      font-size: 10px;
+      font-weight: 600;
+      content: "\\2713";
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  }
+`;
+
 const StyledZeroLabel = styled.label`
   font-weight: 400;
   font-size: 0.8rem;
@@ -119,4 +141,5 @@ export {
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
   StyledSampleScale,
+  StyledTextArea,
 };
