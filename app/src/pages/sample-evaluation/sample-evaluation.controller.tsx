@@ -71,24 +71,10 @@ const calibrationHandler = (
   }
 };
 
-const seeResultsHandler = (
-  shadowRef: React.RefObject<HTMLDivElement>,
-  modalResultsRef: React.RefObject<HTMLDivElement>,
-  results: IResult
-) => {
-  if (isResultsValid(results) && modalResultsRef.current && shadowRef.current) {
-    shadowRef.current.classList.toggle("show");
-    modalResultsRef.current.classList.toggle("show");
-    window.scrollTo({ top: 0 });
-    (document.querySelector("body") as HTMLBodyElement).style.overflowY =
-      "hidden";
-  }
-};
-
 const saveResultsHandler = (results: IResult, panelInfo: any) => {
   if (isResultsValid(results)) {
     sendEvaluation(results, panelInfo);
   }
 }
 
-export { seeResultsHandler, showCalibrationModal, calibrationHandler, saveResultsHandler };
+export { showCalibrationModal, calibrationHandler, saveResultsHandler };
