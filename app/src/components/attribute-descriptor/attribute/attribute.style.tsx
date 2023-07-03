@@ -71,6 +71,12 @@ const StyledZeroWrapper = styled.div`
   margin-right: 8px;
 `;
 
+const StyledListWrapper = styled.div`
+  flex-direction: column;
+  display: table-cell;
+  vertical-align: middle;
+`;
+
 const StyledAttributeLabel = styled.pre`
   width: fit-content;
   line-height: 1.4rem;
@@ -142,4 +148,5 @@ export {
   StyledZeroWrapper,
   StyledSampleScale,
   StyledTextArea,
+  StyledListWrapper
 };

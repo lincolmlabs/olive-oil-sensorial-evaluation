@@ -43,3 +43,12 @@ export const StyledCheckbox = styled.input`
     }
   }
 `;
+
+export const StyledRadioButton = styled.input`
+  min-width: 32px;
+  min-height: 32px;
+  &:checked {
+    background: ${colorPalette.independence100};
+  }
+`;
+

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Header, Attribute, TextAttribute, Samples, Descriptor } from "../../components";
+import { Header, Attribute, TextAttribute, RadioAttributes, Samples, Descriptor, RadioDescriptor } from "../../components";
 import {
   AttributesContainer,
   ButtonsSection,
@@ -23,12 +23,13 @@ import {
   saveResultsHandler,
   showCalibrationModal,
 } from "./sample-evaluation.controller";
-import { IResult } from "./sample-evaluation.model";
+import { IResult } from "../../components/attribute-descriptor/models/attributes.model";
 
 function SampleEvaluationPage() {
   const [sample, setSample] = useState("");
   const [comments, setComments] = useState("");
   const [otherPerceptions, setOtherPerceptions] = useState("");
+  const [dificulty, setDificulty] = useState("");
 
   const [panelInfo, setPanelInfo] = useState({
     "batchName": "",
@@ -69,6 +70,7 @@ function SampleEvaluationPage() {
     sample,
     comments,
     otherPerceptions,
+    dificulty,
     fusty,
     musty,
     winey,
@@ -465,20 +467,21 @@ function SampleEvaluationPage() {
                 setTextState={setOtherPerceptions}
                />
             </AttributesContainer>
+
+            <AttributesContainer>
+            <RadioAttributes
+                attributeId={attributes.textual.otherPerceptions.id}
+                label={attributes.doubtLevel.label}
+                itemLabels={[attributes.doubtLevel.noDoubts.description, attributes.doubtLevel.someDoubts.description, attributes.doubtLevel.tooManyDoubts.description]}
+                itemValues={["0", "1", "2"]}
+                valueState={dificulty}
+                setValueState={setDificulty}
+               />
+            </AttributesContainer>
           </StyledSection>
         <ButtonsSection>
-          <PrimaryButton
-            onClick={() => {
-                console.log(comments);
-                saveResultsHandler(results, panelInfo);
-              }
-            }
-          >Enviar</PrimaryButton>
-          <SecondaryButton
-            onClick={() => {
-              window.location.reload();
-            }}
-          >
+          <PrimaryButton onClick={() => saveResultsHandler(results, panelInfo) }>Enviar</PrimaryButton>
+          <SecondaryButton onClick={() => {window.location.reload();}}>
             Limpar
           </SecondaryButton>
         </ButtonsSection>

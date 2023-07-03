@@ -1,3 +1,3 @@
-import { Descriptor } from "./descriptor.component";
+import { Descriptor, RadioDescriptor } from "./descriptor.component";
 
-export { Descriptor };
+export { Descriptor, RadioDescriptor };

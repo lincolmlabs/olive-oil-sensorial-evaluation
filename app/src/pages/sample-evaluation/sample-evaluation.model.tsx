@@ -7,6 +7,7 @@ export interface IResult {
   sample: string;
   comments: string;
   otherPerceptions: string;
+  dificulty: string;
   fusty: number;
   musty: number;
   winey: number;
