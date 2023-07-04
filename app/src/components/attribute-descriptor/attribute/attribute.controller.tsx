@@ -115,7 +115,9 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     body: JSON.stringify(jsonData)
   };
   await fetch(url, requestOptions)
-    .then(response => response.json())
+    .then(response => {
+      alert("Avaliação da amostra " + results.sample + " enviada com sucesso!");
+    })
     .catch(error => console.error(error)); //If error occurs you will get here
 }
 
