@@ -5,6 +5,7 @@ import {
   StyledAttributeScale,
   StyledAttributeWrapper,
   StyledZeroCheckbox,
+  StyledRadioButton,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
@@ -12,7 +13,6 @@ import {
   StyledTextArea,
   StyledListWrapper,
 } from "./attribute.style";
-import { StyledRadioButton } from "../descriptor/descriptor.style";
 
 function Attribute(props: {
   attributeId: string;
@@ -135,14 +135,14 @@ function RadioAttributes(props: {
   var x=0;
   props.itemLabels.forEach(name => {
     radios.push(
-      <p key={name}> 
+      <p key={name}>
         <StyledRadioButton
           ref={scaleRef}
           type="radio"
           name={props.attributeId}
           value={props.itemValues[x]}
           onChange={e => { props.setValueState(e.target.value) }} 
-        />
+        />&nbsp;
         <StyledZeroLabel htmlFor={props.attributeId}>{name}</StyledZeroLabel>
       </p>
     );

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Header, Attribute, TextAttribute, RadioAttributes, Samples, Descriptor, RadioDescriptor } from "../../components";
+import { Header, Attribute, TextAttribute, RadioAttributes, Samples, Descriptor } from "../../components";
 import {
   AttributesContainer,
   ButtonsSection,

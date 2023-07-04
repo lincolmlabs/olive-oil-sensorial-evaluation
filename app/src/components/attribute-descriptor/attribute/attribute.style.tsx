@@ -24,6 +24,28 @@ const StyledZeroCheckbox = styled.input`
   }
 `;
 
+const StyledRadioButton = styled.input`
+appearance: none;
+height: 16px;
+width: 16px;
+border: 1px solid ${colorPalette.independence80};
+
+&:checked {
+  appearance: none;
+  background: ${colorPalette.independence100};
+  border: 1px solid ${colorPalette.independence100};
+
+  &::after {
+    color: ${colorPalette.cultured100};
+    font-size: 10px;
+    font-weight: 600;
+    content: "\\2713";
+    align-items: center;
+    justify-content: center;
+  }
+}
+`;
+
 const StyledTextArea = styled.textarea`
   appearance: none;
   width: 440px;
@@ -72,8 +94,10 @@ const StyledZeroWrapper = styled.div`
 `;
 
 const StyledListWrapper = styled.div`
+  width: 440px;
   flex-direction: column;
-  display: table-cell;
+  line-height: 1.5;
+  display: inline-block;
   vertical-align: middle;
 `;
 
@@ -143,6 +167,7 @@ export {
   StyledAttributeScale,
   StyledAttributeWrapper,
   StyledZeroCheckbox,
+  StyledRadioButton,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
