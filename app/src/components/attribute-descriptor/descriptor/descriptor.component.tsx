@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { SetStateAction } from "react";
 import { attributes } from "../models/attributes.model";
 import { descriptorsSelectionHandler } from "./descriptor.controller";
+
 import {
   CheckboxLabel,
   CheckboxWrapper,

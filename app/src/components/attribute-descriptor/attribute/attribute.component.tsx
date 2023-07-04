@@ -5,11 +5,13 @@ import {
   StyledAttributeScale,
   StyledAttributeWrapper,
   StyledZeroCheckbox,
+  StyledRadioButton,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
   StyledSampleScale,
   StyledTextArea,
+  StyledListWrapper,
 } from "./attribute.style";
 
 function Attribute(props: {
@@ -81,7 +83,7 @@ function Samples(props: {
   }
   return (
     <StyledAttributeWrapper>
-    <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
+      <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
       <StyledSampleScale 
         ref={scaleRef}
         value={props.sampleState}
@@ -118,4 +120,43 @@ function TextAttribute(props: {
   );
 }
 
-export { Attribute, Samples, TextAttribute };
+function RadioAttributes(props: {
+  attributeId: string;
+  label: string;
+  itemLabels: string[];
+  itemValues: string[];
+  valueState: string;
+  setValueState: React.Dispatch<SetStateAction<string>>;
+}) {
+  const scaleRef = useRef<HTMLInputElement>(null);
+
+  var radios:any[] = [];
+
+  var x=0;
+  props.itemLabels.forEach(name => {
+    radios.push(
+      <p key={name}>
+        <StyledRadioButton
+          ref={scaleRef}
+          type="radio"
+          name={props.attributeId}
+          value={props.itemValues[x]}
+          onChange={e => { props.setValueState(e.target.value) }} 
+        />&nbsp;
+        <StyledZeroLabel htmlFor={props.attributeId}>{name}</StyledZeroLabel>
+      </p>
+    );
+    x++;
+  });
+
+  return (
+    <StyledAttributeWrapper>
+      <StyledAttributeLabel>{props.label}</StyledAttributeLabel>
+      <StyledListWrapper>
+        {radios}
+      </StyledListWrapper>
+    </StyledAttributeWrapper>
+  );
+}
+
+export { Attribute, Samples, TextAttribute, RadioAttributes };

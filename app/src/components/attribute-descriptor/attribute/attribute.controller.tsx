@@ -1,7 +1,6 @@
 import { SetStateAction } from "react";
 import { DescriptorClass } from "../descriptor/descriptor.model";
-import { attributes } from "../models/attributes.model";
-import { IResult } from "../../modal/modal.model";
+import { attributes, IResult } from "../models/attributes.model";
 
 const paintScale = (scale: HTMLInputElement | null, zero?: 0) => {
   if (scale) {
@@ -91,6 +90,12 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     }
   }
 
+  var dificulty = -1;
+  try {
+    dificulty = parseInt(results.dificulty);
+  } catch(e) {    
+  }
+
   const jsonData = {
     "batchName": panelInfo["batchName"],
     "testAnalysis": panelInfo["testAnalysis"],
@@ -98,6 +103,7 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "sampleNumber": sampleNumber,
     "sampleCode": results.sample,
     "user": "user01",
+    "dificulty": dificulty,
     "comments": results.comments,
     "otherPerceptions": results.otherPerceptions,
     "responses": results,

@@ -66,6 +66,39 @@ export const attributes = {
     otherPerceptions: {
       id: "otherPerceptions",
       description: "Outras percepções"
+    },
+  },
+  doubtLevel: {
+    label: "Dificuldade de avaliação da amostra",
+    noDoubts: {
+      id: "nodoubts",
+      description: "Amostra com pouca/nenhuma dúvida"
+    },
+    someDoubts: {
+      id: "somedoubts",
+      description: "Amostra com alguma dúvida"
+    },
+    tooManyDoubts: {
+      id: "tooManydoubts",
+      description: "Muitas dúvidas (desejo excluir minha avaliação desta amostra)"
     }
   }
 };
+
+export interface IResult {
+  sample: string;
+  comments: string;
+  otherPerceptions: string;
+  dificulty: string;
+  fusty: number;
+  musty: number;
+  winey: number;
+  frostbitten: number;
+  rancid: number;
+  otherDefects: number;
+  fruity: number;
+  bitter: number;
+  pungent: number;
+  defectDescriptors: Set<string>;
+  fruityDescriptors: Set<string>;
+}

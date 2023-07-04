@@ -1,3 +1,3 @@
-import { Attribute, Samples, TextAttribute } from "./attribute.component";
+import { Attribute, Samples, TextAttribute, RadioAttributes } from "./attribute.component";
 
-export { Attribute, Samples, TextAttribute };
+export { Attribute, Samples, TextAttribute, RadioAttributes };
