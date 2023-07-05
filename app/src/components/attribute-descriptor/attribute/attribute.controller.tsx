@@ -106,6 +106,9 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "dificulty": dificulty,
     "comments": results.comments,
     "otherPerceptions": results.otherPerceptions,
+    //need to bring to a upper level due typescrpt Set<string> being not serialized to json
+    "defectDescriptors": Array.from(results.defectDescriptors.values()),
+    "fruityDescriptors": Array.from(results.fruityDescriptors.values()),
     "responses": results,
   }
 
@@ -121,4 +124,5 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     .catch(error => console.error(error)); //If error occurs you will get here
 }
 
-export { paintScale, zeroChangeHandler, sendEvaluation };
+export { paintScale, sendEvaluation, zeroChangeHandler };
+
