@@ -159,6 +159,12 @@ export const PrimaryButton = styled.button`
     border: 1px solid ${colorPalette.morningBlue60};
     cursor: pointer;
   }
+
+  &:disabled {
+    background-color: ${colorPalette.independence80};
+    border: 1px solid ${colorPalette.morningBlue100};
+    cursor: not-allowed;
+  }
 `;
 export const SecondaryButton = styled.button`
   height: 40px;

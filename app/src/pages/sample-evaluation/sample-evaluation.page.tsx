@@ -479,7 +479,7 @@ function SampleEvaluationPage() {
             </AttributesContainer>
           </StyledSection>
         <ButtonsSection>
-          <PrimaryButton onClick={() => saveResultsHandler(results, panelInfo) }>Enviar</PrimaryButton>
+          <PrimaryButton onClick={(source) => { saveResultsHandler(results, panelInfo); source.currentTarget.disabled = true} }>Enviar</PrimaryButton>
           <SecondaryButton onClick={() => {window.location.reload();}}>
             Limpar
           </SecondaryButton>
