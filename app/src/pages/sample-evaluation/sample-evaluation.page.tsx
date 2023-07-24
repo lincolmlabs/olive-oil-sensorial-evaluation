@@ -1,5 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Header, Attribute, TextAttribute, RadioAttributes, Samples, Descriptor } from "../../components";
+import { useEffect, useRef, useState } from "react";
+import { Attribute, Descriptor, Header, RadioAttributes, Samples, TextAttribute } from "../../components";
+import { IResult, attributes } from "../../components/attribute-descriptor/models/attributes.model";
+import {
+  calibrationHandler,
+  saveResultsHandler,
+  showCalibrationModal,
+} from "./sample-evaluation.controller";
 import {
   AttributesContainer,
   ButtonsSection,
@@ -17,13 +23,6 @@ import {
   StyledMain,
   StyledSection,
 } from "./sample-evaluation.style";
-import { attributes } from "../../components/attribute-descriptor/models/attributes.model";
-import {
-  calibrationHandler,
-  saveResultsHandler,
-  showCalibrationModal,
-} from "./sample-evaluation.controller";
-import { IResult } from "../../components/attribute-descriptor/models/attributes.model";
 
 function SampleEvaluationPage() {
   const [sample, setSample] = useState("");
@@ -491,3 +490,4 @@ function SampleEvaluationPage() {
 }
 
 export { SampleEvaluationPage as SampleEvaluation };
+
