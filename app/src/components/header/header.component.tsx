@@ -1,23 +1,23 @@
-import React from "react";
-import logo from "../../assets/logo-lfda.png";
-import styled from "styled-components";
-import { colorPalette } from "../../theme";
 import { useLocation } from "react-router-dom";
+import styled from "styled-components";
+import logo from "../../assets/logo-lfda.png";
+import { colorPalette } from "../../theme";
 
 const StyledHeader = styled.header`
-  position: relative;
+  position: fixed;
 
   height: 96px;
   width: 100%;
+  top: 0px;
 
   padding-left: 80px;
   padding-right: 80px;
+  padding-top: 0px;
 
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  white-space: pre-line;
 
   background-color: ${colorPalette.morningBlue100};
 
@@ -30,7 +30,7 @@ const StyledHeader = styled.header`
 `;
 
 const Image = styled.img`
-  position: absolute;
+  position: fixed;
   left: 80px;
   height: 80px;
   width: 80px;
@@ -60,3 +60,4 @@ function Header() {
 }
 
 export { Header };
+
