@@ -1,6 +1,6 @@
 import React, { SetStateAction } from "react";
-import { IResult } from "./sample-evaluation.model";
 import { sendEvaluation } from "../../components/attribute-descriptor/attribute/attribute.controller";
+import { IResult } from "./sample-evaluation.model";
 
 const isResultsValid = (results: IResult) => {
   let key: keyof IResult;
@@ -54,7 +54,9 @@ const calibrationHandler = (
   shadowRef: React.RefObject<HTMLDivElement>,
   calibrationModalRef: React.RefObject<HTMLDivElement>,
   scaleCalibrationInputRef: React.RefObject<HTMLInputElement>,
-  setScaleSize: React.Dispatch<SetStateAction<number>>
+  graderInputRef: React.RefObject<HTMLInputElement>,
+  setScaleSize: React.Dispatch<SetStateAction<number>>,
+  setGrader: React.Dispatch<SetStateAction<string>>
 ) => {
   if (scaleCalibrationInputRef.current) {
     const newScaleSize =
@@ -62,6 +64,10 @@ const calibrationHandler = (
 
     sessionStorage.setItem("scaleSize", newScaleSize.toString());
     setScaleSize(newScaleSize);
+    if (graderInputRef.current) {
+      setGrader(graderInputRef.current.value);
+      sessionStorage.setItem("grader", graderInputRef.current.value);
+    }
   }
   if (shadowRef.current && calibrationModalRef.current) {
     shadowRef.current.classList.toggle("show");
@@ -73,8 +79,9 @@ const calibrationHandler = (
 
 const saveResultsHandler = (results: IResult, panelInfo: any) => {
   if (isResultsValid(results)) {
-    sendEvaluation(results, panelInfo);
+    sendEvaluation(results, panelInfo, sessionStorage.getItem("grader"));
   }
 }
 
-export { showCalibrationModal, calibrationHandler, saveResultsHandler };
+export { calibrationHandler, saveResultsHandler, showCalibrationModal };
+

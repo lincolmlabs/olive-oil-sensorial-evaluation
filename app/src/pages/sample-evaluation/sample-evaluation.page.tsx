@@ -13,6 +13,7 @@ import {
   CalibrationModal,
   CalibrationScale,
   CheckboxesSection,
+  GraderInput,
   InputWrapper,
   MobileScreen,
   PrimaryButton,
@@ -60,8 +61,10 @@ function SampleEvaluationPage() {
   const [green, setGreen] = useState(false);
   const [ripe, setRipe] = useState(false);
   const [scaleSize, setScaleSize] = useState(393);
+  const [grader, setGrader] = useState("");
 
   const scaleCalibrationInputRef = useRef<HTMLInputElement>(null);
+  const graderInputRef = useRef<HTMLInputElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
   const calibrationModal = useRef<HTMLDivElement>(null);
 
@@ -152,13 +155,21 @@ function SampleEvaluationPage() {
             Medida da escala (cm){" "}
             <ScaleValueInput ref={scaleCalibrationInputRef} />
           </label>
+
+          <label>
+            Código do Avaliador {" "}
+            <GraderInput ref={graderInputRef} />
+          </label>
+          
           <SecondaryButton
             onClick={() =>
               calibrationHandler(
                 shadowRef,
                 calibrationModal,
                 scaleCalibrationInputRef,
-                setScaleSize
+                graderInputRef,
+                setScaleSize, 
+                setGrader
               )
             }
           >

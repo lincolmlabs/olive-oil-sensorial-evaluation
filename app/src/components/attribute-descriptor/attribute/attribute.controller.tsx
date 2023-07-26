@@ -78,7 +78,7 @@ const zeroChangeHandler = (
   }
 };
 
-const sendEvaluation = async (results: IResult, panelInfo: any) => {
+const sendEvaluation = async (results: IResult, panelInfo: any, grader: any) => {
   const url = "https://lfdars.lincolmlabs.cloud/evaluation/" + panelInfo["batchName"] + "/user01";
 
   var sampleNumber = 0;
@@ -102,7 +102,7 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "testNumber": panelInfo["testNumber"],
     "sampleNumber": sampleNumber,
     "sampleCode": results.sample,
-    "user": "user01",
+    "user": grader,
     "dificulty": dificulty,
     "comments": results.comments,
     "otherPerceptions": results.otherPerceptions,
