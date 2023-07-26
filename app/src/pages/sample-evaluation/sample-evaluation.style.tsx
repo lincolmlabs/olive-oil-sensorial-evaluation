@@ -330,6 +330,27 @@ export const ScaleValueInput = styled.input.attrs({ type: "number" })`
   }
 `;
 
+export const GraderInput = styled.input.attrs({ type: "string" })`
+  &::-webkit-outer-spin-button,
+  &::-webkit-inner-spin-button {
+    appearance: none;
+  }
+
+  margin-left: 4%;
+  height: 32px;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: ${colorPalette.independence100};
+  text-align: center;
+  font-size: 1rem;
+  color: ${colorPalette.independence100};
+
+  &:focus {
+    outline-color: ${colorPalette.apricot100};
+  }
+`;
+
 export const CalibrationMessage = styled.div`
   display: flex;
   flex-direction: column;
