@@ -5,6 +5,7 @@ export interface LoginProps {
 }
 
 export interface LoginSendData {
+  panel: string;
   username: string;
   password: string;
 }

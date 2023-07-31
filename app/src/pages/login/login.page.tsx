@@ -1,32 +1,36 @@
-import React, { useState, SetStateAction } from 'react';
+import { useState } from 'react';
+import { useLocation } from "react-router-dom";
 import { Header } from "../../components";
 import { PrimaryButton } from "../sample-evaluation/sample-evaluation.style";
-import { LoginUsernameInput, LoginContainer, LoginButtonsContainer, LoginLeftInnerContainer, LoginRightInnerContainer } from './login.style';
-import { LoginProps } from './login.model';
 import { doLogin } from "./login.controller";
+import { LoginProps } from './login.model';
+import { LoginButtonsContainer, LoginContainer, LoginLeftInnerContainer, LoginRightInnerContainer, LoginUsernameInput } from './login.style';
 
 const Login = (props: LoginProps) => {
+    const query = new URLSearchParams(useLocation().search);
     const [username, setUserName] = useState("");
     const [password, setPassword] = useState("");
-
+    let p = query.get("ps");
+    
     return (
         <>
             <Header />
             <LoginContainer>
                 <LoginLeftInnerContainer>
-                    <label>Usuário: </label>
-                    <label>Senha: </label>
+                    <label>Chave de Acesso: </label>
+                    {/*<label>Senha: </label>*/}
                 </LoginLeftInnerContainer>
                 <LoginRightInnerContainer>
                     <LoginUsernameInput onChange={(e) => setUserName(e.target.value)} />&nbsp;
-                    <LoginUsernameInput onChange={e => setPassword(e.target.value)}/>
+                    {/*<LoginUsernameInput onChange={e => setPassword(e.target.value)}/>*/}
                 </LoginRightInnerContainer>
             </LoginContainer>
             <LoginButtonsContainer>
-                <PrimaryButton onClick={() => doLogin(username, password, props.setAccess)}>Entrar</PrimaryButton>
+                <PrimaryButton onClick={() => doLogin(p === null ? "" : p, username, password, props.setAccess)}>Entrar</PrimaryButton>
             </LoginButtonsContainer>
         </>
     );
 }
 
 export { Login };
+
