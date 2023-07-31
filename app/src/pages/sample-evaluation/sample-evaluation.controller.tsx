@@ -54,9 +54,7 @@ const calibrationHandler = (
   shadowRef: React.RefObject<HTMLDivElement>,
   calibrationModalRef: React.RefObject<HTMLDivElement>,
   scaleCalibrationInputRef: React.RefObject<HTMLInputElement>,
-  graderInputRef: React.RefObject<HTMLInputElement>,
-  setScaleSize: React.Dispatch<SetStateAction<number>>,
-  setGrader: React.Dispatch<SetStateAction<string>>
+  setScaleSize: React.Dispatch<SetStateAction<number>>
 ) => {
   if (scaleCalibrationInputRef.current) {
     const newScaleSize =
@@ -64,10 +62,6 @@ const calibrationHandler = (
 
     sessionStorage.setItem("scaleSize", newScaleSize.toString());
     setScaleSize(newScaleSize);
-    if (graderInputRef.current) {
-      setGrader(graderInputRef.current.value);
-      sessionStorage.setItem("grader", graderInputRef.current.value);
-    }
   }
   if (shadowRef.current && calibrationModalRef.current) {
     shadowRef.current.classList.toggle("show");
@@ -79,7 +73,7 @@ const calibrationHandler = (
 
 const saveResultsHandler = (results: IResult, panelInfo: any) => {
   if (isResultsValid(results)) {
-    sendEvaluation(results, panelInfo, sessionStorage.getItem("grader"));
+    sendEvaluation(results, panelInfo);
   }
 }
 

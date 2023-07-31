@@ -13,7 +13,6 @@ import {
   CalibrationModal,
   CalibrationScale,
   CheckboxesSection,
-  GraderInput,
   InputWrapper,
   MobileScreen,
   PrimaryButton,
@@ -22,7 +21,7 @@ import {
   SectionTitle,
   Shadow,
   StyledMain,
-  StyledSection,
+  StyledSection
 } from "./sample-evaluation.style";
 
 function SampleEvaluationPage() {
@@ -36,6 +35,7 @@ function SampleEvaluationPage() {
     "testAnalysis": "",
     "testNumber": "",
     "samples": [],
+    "user": ""
   });
   const [fusty, setFusty] = useState(-1.0);
   const [musty, setMusty] = useState(-1.0);
@@ -61,10 +61,8 @@ function SampleEvaluationPage() {
   const [green, setGreen] = useState(false);
   const [ripe, setRipe] = useState(false);
   const [scaleSize, setScaleSize] = useState(393);
-  const [grader, setGrader] = useState("");
 
   const scaleCalibrationInputRef = useRef<HTMLInputElement>(null);
-  const graderInputRef = useRef<HTMLInputElement>(null);
   const shadowRef = useRef<HTMLDivElement>(null);
   const calibrationModal = useRef<HTMLDivElement>(null);
 
@@ -120,12 +118,16 @@ function SampleEvaluationPage() {
         return response.json();
       })
       .then(jsonData => {
+        var user = sessionStorage.getItem("token");
+        if (user == null) {
+          user = "";
+        }
         setPanelInfo({
           "batchName": jsonData["BatchName"],
           "testAnalysis": jsonData["TestAnalysis"],
           "testNumber": jsonData["TestNumber"],
           "samples": jsonData["Samples"],
-          //"user": "user01"
+          "user": user
         });
         setSample(jsonData["Samples"][0]["Code"]);
       })
@@ -155,11 +157,6 @@ function SampleEvaluationPage() {
             Medida da escala (cm){" "}
             <ScaleValueInput ref={scaleCalibrationInputRef} />
           </label>
-
-          <label>
-            Código do Avaliador {" "}
-            <GraderInput ref={graderInputRef} />
-          </label>
           
           <SecondaryButton
             onClick={() =>
@@ -167,9 +164,7 @@ function SampleEvaluationPage() {
                 shadowRef,
                 calibrationModal,
                 scaleCalibrationInputRef,
-                graderInputRef,
-                setScaleSize, 
-                setGrader
+                setScaleSize
               )
             }
           >
