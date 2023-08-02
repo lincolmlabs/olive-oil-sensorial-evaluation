@@ -17,7 +17,7 @@ const Login = (props: LoginProps) => {
             <Header />
             <LoginContainer>
                 <LoginLeftInnerContainer>
-                    <label>Chave de Acesso: </label>
+                    <label>Avaliador: </label>
                     {/*<label>Senha: </label>*/}
                 </LoginLeftInnerContainer>
                 <LoginRightInnerContainer>
