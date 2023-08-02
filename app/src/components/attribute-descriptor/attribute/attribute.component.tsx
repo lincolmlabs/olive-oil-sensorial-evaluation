@@ -4,14 +4,14 @@ import {
   StyledAttributeLabel,
   StyledAttributeScale,
   StyledAttributeWrapper,
-  StyledZeroCheckbox,
+  StyledListWrapper,
   StyledRadioButton,
+  StyledSampleScale,
+  StyledTextArea,
+  StyledZeroCheckbox,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
-  StyledSampleScale,
-  StyledTextArea,
-  StyledListWrapper,
 } from "./attribute.style";
 
 function Attribute(props: {
@@ -72,12 +72,17 @@ function Samples(props: {
   list: any[];
 }) {
   const scaleRef = useRef<HTMLSelectElement>(null);
+  const samplesEvaluated = sessionStorage.getItem("samplesEvaluated");
   var samples = props.list;
   if (scaleRef.current) {
     while(scaleRef.current?.options.length > 0) {
       scaleRef.current?.options.remove(0);
     }
+    const _samples = samplesEvaluated ? samplesEvaluated.split(",") : [];
     for (var item in samples) {
+      if (_samples.find((s) => s === samples[item]["Code"])) { //(obj) => obj.value === 123)
+        continue;
+      }
       scaleRef.current?.options.add(new Option(samples[item]["Code"]));
     }
   }
@@ -159,4 +164,5 @@ function RadioAttributes(props: {
   );
 }
 
-export { Attribute, Samples, TextAttribute, RadioAttributes };
+export { Attribute, RadioAttributes, Samples, TextAttribute };
+

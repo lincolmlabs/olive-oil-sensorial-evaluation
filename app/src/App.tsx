@@ -1,15 +1,17 @@
-import "./app.css";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { SampleEvaluation, Login } from "./pages";
 import { NotFound } from "./NotFound";
+import "./app.css";
+import { Login, SampleEvaluation } from "./pages";
 
 function App() {
   const [access, setAcces] = useState("");
 
-  if (!access) {
+  if (sessionStorage.getItem("token") == "") {
     return <Login setAccess={setAcces} />
   }
+
+  console.log("access[" + access + "]");
 
   return (
     <div className="App">
@@ -22,3 +24,4 @@ function App() {
 }
 
 export { App };
+

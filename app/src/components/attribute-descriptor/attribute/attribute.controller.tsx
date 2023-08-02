@@ -79,7 +79,7 @@ const zeroChangeHandler = (
 };
 
 const sendEvaluation = async (results: IResult, panelInfo: any) => {
-  const url = "https://lfdars.lincolmlabs.cloud/evaluation/" + panelInfo["batchName"] + "/user01";
+  const url = "https://lfdars.lincolmlabs.cloud/evaluation/" + panelInfo["batchName"];
 
   var sampleNumber = 0;
   var samples =  panelInfo["samples"];
@@ -88,6 +88,15 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
       sampleNumber = samples[item]["Number"];
       break;
     }
+  }
+  var evaluations = sessionStorage.getItem("samplesEvaluated");
+  if (evaluations === null) {
+    evaluations = results.sample;
+  } else {
+    evaluations += evaluations + "," + results.sample;
+  }
+  if (evaluations) {
+    sessionStorage.setItem("samplesEvaluated", evaluations);
   }
 
   var dificulty = -1;
@@ -102,7 +111,7 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "testNumber": panelInfo["testNumber"],
     "sampleNumber": sampleNumber,
     "sampleCode": results.sample,
-    "user": panelInfo["user"],
+    "user": sessionStorage.getItem("token"),
     "dificulty": dificulty,
     "comments": results.comments,
     "otherPerceptions": results.otherPerceptions,
@@ -117,6 +126,7 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     headers: {'content-type': 'application/json'},
     body: JSON.stringify(jsonData)
   };
+  console.log(jsonData);
   await fetch(url, requestOptions)
     .then(response => {
       alert("Avaliação da amostra " + results.sample + " enviada com sucesso!");

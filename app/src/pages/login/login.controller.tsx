@@ -1,7 +1,6 @@
-import React, { SetStateAction } from "react";
 import { LoginSendData } from "./login.model";
 
-async function loginUser(credentials:  LoginSendData, setAcces: React.Dispatch<SetStateAction<string>>) {
+function loginUser(credentials:  LoginSendData) {
     return fetch('https://lfdars.lincolmlabs.cloud/auth', {
       method: 'POST',
       headers: {
@@ -9,22 +8,22 @@ async function loginUser(credentials:  LoginSendData, setAcces: React.Dispatch<S
       },
       body: JSON.stringify(credentials)
     }).then(data => { if (data.ok) { return data.json() } else { alert("Acesso não autorizado nesse painel."); return data.json(); }})
-    .then(json => { 
-      setAcces(json["token"])
-      sessionStorage.setItem("token", json["token"]);
-    });
+    .then(json => { return json["token"] });
 }
 
-const doLogin = (
+const doLogin = async (
     panel: string,
     username: string,
-    password: string, 
-    setAcces: React.Dispatch<SetStateAction<string>>) => {
-        const token = loginUser({
+    password: string) => {
+        const token = await loginUser({
             panel,
             username,
             password
-        }, setAcces);
+        });
+        if (token) {
+          sessionStorage.setItem("token", token);
+        }
+      return token;
 };
 
 export { doLogin };
