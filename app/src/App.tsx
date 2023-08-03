@@ -7,11 +7,9 @@ import { Login, SampleEvaluation } from "./pages";
 function App() {
   const [access, setAcces] = useState("");
 
-  if (sessionStorage.getItem("token") == "") {
+  if (!sessionStorage.getItem("token")) {
     return <Login setAccess={setAcces} />
   }
-
-  console.log("access[" + access + "]");
 
   return (
     <div className="App">

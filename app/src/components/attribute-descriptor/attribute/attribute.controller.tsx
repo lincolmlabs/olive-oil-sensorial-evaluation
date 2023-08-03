@@ -89,15 +89,6 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
       break;
     }
   }
-  var evaluations = sessionStorage.getItem("samplesEvaluated");
-  if (evaluations === null) {
-    evaluations = results.sample;
-  } else {
-    evaluations += evaluations + "," + results.sample;
-  }
-  if (evaluations) {
-    sessionStorage.setItem("samplesEvaluated", evaluations);
-  }
 
   var dificulty = -1;
   try {
