@@ -26,7 +26,11 @@ const Login = (props: LoginProps) => {
                 </LoginRightInnerContainer>
             </LoginContainer>
             <LoginButtonsContainer>
-                <PrimaryButton onClick={() => doLogin(p === null ? "" : p, username, password, props.setAccess)}>Entrar</PrimaryButton>
+                <PrimaryButton onClick={() => { 
+                    doLogin(p === null ? "" : p, username, password).then(l => {
+                        props.setAccess(l);
+                    });
+                }}>Entrar</PrimaryButton>
             </LoginButtonsContainer>
         </>
     );

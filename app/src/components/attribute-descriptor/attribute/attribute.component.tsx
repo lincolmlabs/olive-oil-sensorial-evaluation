@@ -4,14 +4,14 @@ import {
   StyledAttributeLabel,
   StyledAttributeScale,
   StyledAttributeWrapper,
-  StyledZeroCheckbox,
+  StyledListWrapper,
   StyledRadioButton,
+  StyledSampleScale,
+  StyledTextArea,
+  StyledZeroCheckbox,
   StyledZeroLabel,
   StyledZeroScaleWrapper,
   StyledZeroWrapper,
-  StyledSampleScale,
-  StyledTextArea,
-  StyledListWrapper,
 } from "./attribute.style";
 
 function Attribute(props: {
@@ -159,4 +159,5 @@ function RadioAttributes(props: {
   );
 }
 
-export { Attribute, Samples, TextAttribute, RadioAttributes };
+export { Attribute, RadioAttributes, Samples, TextAttribute };
+
