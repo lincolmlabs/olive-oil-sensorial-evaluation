@@ -123,13 +123,13 @@ function SampleEvaluationPage() {
           user = "";
         }
         setPanelInfo({
-          "batchName": jsonData["BatchName"],
-          "testAnalysis": jsonData["TestAnalysis"],
-          "testNumber": jsonData["TestNumber"],
-          "samples": jsonData["Samples"],
+          "batchName": jsonData["batchName"],
+          "testAnalysis": jsonData["testAnalysis"],
+          "testNumber": jsonData["testNumber"],
+          "samples": jsonData["samples"],
           "user": user
         });
-        setSample(jsonData["Samples"][0]["Code"]);
+        setSample(jsonData["samples"][0]["code"]);
       })
       .catch(error => console.error(error));
   }, []);

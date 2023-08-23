@@ -78,7 +78,7 @@ function Samples(props: {
       scaleRef.current?.options.remove(0);
     }
     for (var item in samples) {
-      scaleRef.current?.options.add(new Option(samples[item]["Code"]));
+      scaleRef.current?.options.add(new Option(samples[item]["code"]));
     }
   }
   return (
