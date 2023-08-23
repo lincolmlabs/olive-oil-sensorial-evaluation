@@ -90,9 +90,9 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     }
   }
 
-  var dificulty = -1;
+  var difficulty = -1;
   try {
-    dificulty = parseInt(results.dificulty);
+    difficulty = parseInt(results.dificulty);
   } catch(e) {    
   }
 
@@ -103,7 +103,7 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
     "sampleNumber": sampleNumber,
     "sampleCode": results.sample,
     "user": sessionStorage.getItem("token"),
-    "dificulty": dificulty,
+    "difficulty": difficulty,
     "comments": results.comments,
     "otherPerceptions": results.otherPerceptions,
     //need to bring to a upper level due typescrpt Set<string> being not serialized to json
