@@ -32,7 +32,7 @@ function SampleEvaluationPage() {
 
   const [panelInfo, setPanelInfo] = useState({
     "batchName": "",
-    "testAnalysis": "",
+    "testAnalisys": "",
     "testNumber": "",
     "samples": [],
     "user": ""
@@ -124,7 +124,7 @@ function SampleEvaluationPage() {
         }
         setPanelInfo({
           "batchName": jsonData["batchName"],
-          "testAnalysis": jsonData["testAnalysis"],
+          "testAnalisys": jsonData["testAnalisys"],
           "testNumber": jsonData["testNumber"],
           "samples": jsonData["samples"],
           "user": user

@@ -98,7 +98,7 @@ const sendEvaluation = async (results: IResult, panelInfo: any) => {
 
   const jsonData = {
     "batchName": panelInfo["batchName"],
-    "testAnalysis": panelInfo["testAnalysis"],
+    "testAnalisys": panelInfo["testAnalisys"],
     "testNumber": panelInfo["testNumber"],
     "sampleNumber": sampleNumber,
     "sampleCode": results.sample,
